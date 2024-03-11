@@ -5,3 +5,6 @@
 
 ## structurer la db :
 `node ace migration:run`
+
+## recréer la db :
+`node ace migration:refresh`
