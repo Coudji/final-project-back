@@ -9,20 +9,20 @@ export default class NanasController {
   /**
    * Handle form submission for the create action
    */
-  async store({ request }: HttpContext) {}
+  async store() {}
 
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show() {}
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update() {}
 
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy() {}
 }
