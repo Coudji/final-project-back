@@ -27,7 +27,7 @@ export default class Announce extends BaseModel {
   declare practice: number[]
 
   @column()
-  declare pricing: JSON
+  declare pricing: Object
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
