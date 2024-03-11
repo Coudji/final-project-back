@@ -8,6 +8,12 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
       table.string('genre').nullable()
+      table.string('orientation').nullable()
+      table.string('size').nullable()
+      table.string('weight').nullable()
+      table.string('hair_color').nullable()
+      table.string('eye_color').nullable()
+      
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
