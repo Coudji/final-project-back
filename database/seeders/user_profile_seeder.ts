@@ -11,6 +11,7 @@ export default class extends BaseSeeder {
         orientation: 'à gauche?',
         size: 5,
         weight: 12,
+        penis_size: 4,
         hairColor: 'auburn',
         eyeColor: 'jaune cyrose'
       },
@@ -21,6 +22,7 @@ export default class extends BaseSeeder {
         orientation: 'à droite?',
         size: 5,
         weight: 12,
+        bra_cup: 'bonnet A',
         hairColor: 'auburn',
         eyeColor: 'jaune cyrose'
       },
@@ -31,6 +33,8 @@ export default class extends BaseSeeder {
         orientation: 'en haut?',
         size: 5,
         weight: 12,
+        penis_size: 8,
+        bra_cup: 'bonnet B',
         hairColor: 'auburn',
         eyeColor: 'jaune cyrose'
       },
@@ -41,6 +45,7 @@ export default class extends BaseSeeder {
         orientation: 'en bas?',
         size: 5,
         weight: 12,
+        penis_size: 10,
         hairColor: 'auburn',
         eyeColor: 'jaune cyrose'
       },
@@ -51,6 +56,7 @@ export default class extends BaseSeeder {
         orientation: 'tout droit?',
         size: 5,
         weight: 12,
+        bra_cup: 'bonnet C',
         hairColor: 'auburn',
         eyeColor: 'jaune cyrose'
       }
