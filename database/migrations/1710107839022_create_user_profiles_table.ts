@@ -11,6 +11,8 @@ export default class extends BaseSchema {
       table.string('orientation').nullable()
       table.string('size').nullable()
       table.string('weight').nullable()
+      table.integer('penis_size').nullable()
+      table.string('bra_cup').nullable()
       table.string('hair_color').nullable()
       table.string('eye_color').nullable()
       
