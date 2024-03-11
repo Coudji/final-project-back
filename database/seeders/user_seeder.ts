@@ -5,17 +5,17 @@ export default class extends BaseSeeder {
   async run() {
     await User.createMany([
       {
-        id: 1, 
-        firstname: 'Franck', 
-        lastname: 'Tchibozo', 
-        nickname: 'FT', 
-        email: 'ft21@test.com', 
-        password: '1234', 
+        id: 1,
+        firstname: 'Franck',
+        lastname: 'Tchibozo',
+        nickname: 'FT',
+        email: 'ft21@test.com',
+        password: '1234',
         address: {
           street: 'oulalalala',
           number: '7',
           city: 'Berninois',
-          zip_code: 7500       
+          zip_code: 7500
         }
       },
       {
