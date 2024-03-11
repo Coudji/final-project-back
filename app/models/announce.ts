@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
-export default class UserProfile extends BaseModel {
+export default class Announce extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
@@ -24,7 +24,7 @@ export default class UserProfile extends BaseModel {
   declare escort: boolean
 
   @column()
-  declare practice: []
+  declare practice: string[]
 
   @column()
   declare pricing: JSON
