@@ -1,4 +1,6 @@
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
+import PracticeCategory from './practice_category.js'
+import type { HasOne } from '@adonisjs/lucid/types/relations'
 
 export default class Practice extends BaseModel {
   @column({ isPrimary: true })
@@ -7,6 +9,6 @@ export default class Practice extends BaseModel {
   @column()
   declare name: string
 
-  @column()
-  declare category: string
+  @hasOne(() => PracticeCategory)
+  declare practiceCategory: HasOne<typeof PracticeCategory>
 }
