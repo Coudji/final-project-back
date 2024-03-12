@@ -21,6 +21,12 @@ export default class UserProfile extends BaseModel {
   declare weight: number
 
   @column()
+  declare penis_size: number
+
+  @column()
+  declare bra_cup: string
+
+  @column()
   declare hairColor: string
 
   @column()

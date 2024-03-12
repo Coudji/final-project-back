@@ -6,7 +6,7 @@ export default class NeuneusController {
    * Display a list of resource
    */
   async index({response}: HttpContext) {
-    const users = await User.query().preload('userProfile')
+    const users = await User.query().preload('userProfile').preload('announce')
     //const users = await User.all()
     return response.ok({
       users

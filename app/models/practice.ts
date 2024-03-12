@@ -5,8 +5,5 @@ export default class Practice extends BaseModel {
   declare id: number
 
   @column()
-  declare name: string
-
-  @column()
-  declare category: string
+  declare practiceName: string
 }
