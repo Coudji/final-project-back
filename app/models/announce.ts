@@ -1,6 +1,5 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
-import type { UUID } from 'crypto'
 
 export default class Announce extends BaseModel {
   @column({ isPrimary: true })
