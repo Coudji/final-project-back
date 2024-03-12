@@ -41,6 +41,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @hasOne(() => Announce)
   declare announce: HasOne<typeof Announce>
 
+  @column()
+  declare userType: string
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

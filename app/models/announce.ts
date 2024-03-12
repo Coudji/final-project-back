@@ -24,7 +24,7 @@ export default class Announce extends BaseModel {
   declare escort: boolean
 
   @column()
-  declare practice: number[]
+  declare practices: number[]
 
   @column()
   declare pricing: Object
