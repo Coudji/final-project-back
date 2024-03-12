@@ -6,16 +6,16 @@ export default class extends BaseSchema {
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('user_id').unsigned().references('users.id')
+      table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
       table.string('title', 64).notNullable()
       table.string('description',600).notNullable()
-      table.boolean('infidelity_card')
-      table.boolean('private')
-      table.boolean('escort')
-      table.json('practice_array')
-      table.json('pricing')
-      table.timestamp('created_at')
-      table.timestamp('updated_at')
+      table.boolean('infidelity_card').nullable()
+      table.boolean('private').nullable()
+      table.boolean('escort').nullable()
+      table.string('practices').nullable()
+      table.json('pricing').nullable()
+      table.timestamp('created_at').nullable()
+      table.timestamp('updated_at').nullable()
     })
   }
 
