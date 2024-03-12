@@ -3,10 +3,10 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export default class Announce extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
 
   @column()
-  declare userId: number
+  declare userId: string
 
   @column()
   declare title: string

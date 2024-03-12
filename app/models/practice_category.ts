@@ -4,7 +4,7 @@ import type { HasMany } from '@adonisjs/lucid/types/relations'
 
 export default class PracticeCategory extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
 
   @column()
   declare categoryName: string
