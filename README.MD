@@ -1,19 +1,19 @@
 # Final project
 
-## installer les dépendances :
+## Installer les dépendances :
 `npm run dev`
 
-## intaller la DB et la lancer : 
+## Intaller la DB et la lancer : 
 `docker compose up -d`
 
-## structurer la db :
+## Structurer la db :
 `node ace migration:run`
 
-## recréer la db :
+## Recréer la db :
 `node ace migration:refresh`
 
-## peupler la db :
+## Peupler la db :
 `node ace db:seed`
 
-## lancer le serveur en mode dev :
+## Lancer le serveur en mode dev :
 `npm run dev`
