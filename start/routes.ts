@@ -30,6 +30,14 @@ router.group(() => {
       const user = await auth.authenticate()
       return response.ok(user)
     }).use(middleware.auth())
+
+    router.get('isadmin', async({auth,response}) => {
+      const user = await auth.authenticate()
+      if(user.userType==='admin'){
+        return response.ok({"isAdmin":true})
+      }
+      return response.ok({"isAdmin":false})
+    }).use(middleware.auth())
   }).prefix('user')
   
   router.resource('neuneu', NeuneusController).use(['index','update'],middleware.auth())
