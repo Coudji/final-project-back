@@ -6,6 +6,7 @@ import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import UserProfile from './user_profile.js'
 import type { HasOne } from '@adonisjs/lucid/types/relations'
+import Announce from './announce.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -36,6 +37,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @hasOne(() => UserProfile)
   declare userProfile: HasOne<typeof UserProfile>
+
+  @hasOne(() => Announce)
+  declare announce: HasOne<typeof Announce>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
