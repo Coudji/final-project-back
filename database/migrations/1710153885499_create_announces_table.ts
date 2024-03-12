@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.boolean('infidelity_card')
       table.boolean('private')
       table.boolean('escort')
-      table.jsonb('practice_array')
+      table.json('practice_array')
       table.json('pricing')
       table.timestamp('created_at')
       table.timestamp('updated_at')

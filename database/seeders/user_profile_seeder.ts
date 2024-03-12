@@ -7,7 +7,7 @@ export default class extends BaseSeeder {
       {
         id: 1,
         userId: 1,
-        genre: 'bizarre',
+        genre: 'homme',
         orientation: 'à gauche?',
         size: 5,
         weight: 12,
@@ -18,7 +18,7 @@ export default class extends BaseSeeder {
       {
         id: 2,
         userId: 2,
-        genre: 'bizarre',
+        genre: 'femme',
         orientation: 'à droite?',
         size: 5,
         weight: 12,
@@ -29,7 +29,7 @@ export default class extends BaseSeeder {
       {
         id: 3,
         userId: 3,
-        genre: 'bizarre',
+        genre: 'déviant',
         orientation: 'en haut?',
         size: 5,
         weight: 12,
@@ -41,7 +41,7 @@ export default class extends BaseSeeder {
       {
         id: 4,
         userId: 4,
-        genre: 'bizarre',
+        genre: 'robot',
         orientation: 'en bas?',
         size: 5,
         weight: 12,
@@ -52,7 +52,7 @@ export default class extends BaseSeeder {
       {
         id: 5,
         userId: 5,
-        genre: 'bizarre',
+        genre: 'femme',
         orientation: 'tout droit?',
         size: 5,
         weight: 12,
