@@ -13,7 +13,7 @@
 `node ace migration:refresh`
 
 ## recréer la db :
-`node ace migration:refresh`
+`node ace db:seed`
 
 ## lancer le serveur en mode dev :
 `npm run dev`

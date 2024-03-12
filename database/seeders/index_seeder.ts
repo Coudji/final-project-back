@@ -8,6 +8,8 @@ export default class index_seeder extends BaseSeeder {
   async run() {
     await this.seed(await import('#database/seeders/user_seeder'))
     await this.seed(await import('#database/seeders/user_profile_seeder'))
+    await this.seed(await import('#database/seeders/practice_category_seeder'))
+    await this.seed(await import('#database/seeders/practice_seeder'))
     await this.seed(await import('#database/seeders/announce_seeder'))
   }
 }

@@ -1,15 +1,14 @@
 import User from '#models/user'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
-import { randomUUID } from 'crypto'
 
 export default class extends BaseSeeder {
   async run() {
     await User.createMany([
       {
         id: 1,
-        firstname: 'Franck',
-        lastname: 'Tchibozo',
-        nickname: 'FT',
+        firstname: 'Jean-Marc',
+        lastname: 'Panacloc',
+        nickname: 'JP',
         email: 'ft21@test.com',
         password: '1234',
         address: {
@@ -35,8 +34,8 @@ export default class extends BaseSeeder {
       },
       {
         id: 3, 
-        firstname: 'Franckyz', 
-        lastname: 'Thé', 
+        firstname: 'Jeff', 
+        lastname: 'Colcanap', 
         nickname: 'FT2', 
         email: 'ft214@test.com', 
         password: '1234', 
@@ -49,8 +48,8 @@ export default class extends BaseSeeder {
       },
       {
         id: 4, 
-        firstname: 'Franckyz', 
-        lastname: 'Thés', 
+        firstname: 'Jean', 
+        lastname: 'Culle', 
         nickname: 'FT3', 
         email: 'ft2140@test.com', 
         password: '1234', 
@@ -63,8 +62,8 @@ export default class extends BaseSeeder {
       },
       {
         id: 5, 
-        firstname: 'Francis', 
-        lastname: 'Tchizobi', 
+        firstname: 'Nick', 
+        lastname: 'Lenain', 
         nickname: 'FT24', 
         email: 'ft2148@test.com', 
         password: '1234', 
