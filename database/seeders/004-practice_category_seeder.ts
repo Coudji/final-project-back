@@ -17,11 +17,15 @@ export default class extends BaseSeeder {
         categoryName: 'intimate'
       },
       {
-        id: 4,
-        categoryName: 'other'
+        id:4,
+        categoryName:'fetish'
       },
       {
         id: 5,
+        categoryName: 'other'
+      },
+      {
+        id: 6,
         categoryName: 'disability'
       }
     ])
