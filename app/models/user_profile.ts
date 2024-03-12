@@ -1,12 +1,13 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
+import type { UUID } from 'crypto'
 
 export default class UserProfile extends BaseModel {
   @column({ isPrimary: true })
-  declare id: string
+  declare id: number
 
   @column()
-  declare userId: string
+  declare userId: number
 
   @column()
   declare genre: string
