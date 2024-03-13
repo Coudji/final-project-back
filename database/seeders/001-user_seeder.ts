@@ -16,7 +16,8 @@ export default class extends BaseSeeder {
           number: '7',
           city: 'Berninois',
           zip_code: 7500
-        }
+        },
+        userType: 'Admin'
       },
       {
         id: 2, 
@@ -30,7 +31,8 @@ export default class extends BaseSeeder {
           number: '7b',
           city: 'Berninois',
           zip_code: 7500       
-        }
+        },
+        userType: 'User'
       },
       {
         id: 3, 
