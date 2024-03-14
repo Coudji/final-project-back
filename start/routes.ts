@@ -9,9 +9,9 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-const NeuneusController = () => import('#controllers/neuneus_controller')
 const AuthController = () => import('#controllers/auth_controller')
 const UserController = () => import('#controllers/user_controller')
+const PracticesController = () => import ('#controllers/practices_controller')
 
 router
   .group(() => {
@@ -43,8 +43,6 @@ router
       })
       .use(middleware.auth())
 
-    router.resource('neuneu', NeuneusController).use(['index', 'update'], middleware.auth())
-    //router.resource('user', UserController).use(['index', 'update'], middleware.auth())
     router
       .group(() => {
         router.get(':id', [UserController, 'getOneUser'])
@@ -54,5 +52,7 @@ router
       })
       .prefix('user')
       .use(middleware.auth())
+
+    router.get('practices', [PracticesController,'getAllPractices']).use(middleware.auth())
   })
   .prefix('api')

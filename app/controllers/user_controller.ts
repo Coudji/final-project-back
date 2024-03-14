@@ -38,12 +38,10 @@ export default class UserController {
     }
   }
 
-  async destroy({ params, response }: HttpContext) {
-    //const user = await auth.authenticate()
-    const user = await User.findOrFail(params.id)
-    if (user.id === params.id) {
+  async destroy({ auth, params, response }: HttpContext) {
+    const user = await auth.authenticate()
+    if (user.id === +params.id) {//ajouter une vérif admin
       await user.delete()
-      //await User.query().where('id', params.id).delete()
       return response.ok({
         message: `user ${params.id} has been deleted`,
       })
