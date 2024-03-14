@@ -6,28 +6,28 @@ export default class extends BaseSeeder {
     await PracticeCategory.createMany([
       {
         id: 1,
-        categoryName: 'massage',
+        categoryName: 'massage'
       },
       {
         id: 2,
-        categoryName: 'preliminary',
+        categoryName: 'preliminary'
       },
       {
         id: 3,
-        categoryName: 'intimate',
+        categoryName: 'intimate'
       },
       {
-        id: 4,
-        categoryName: 'fetish',
+        id:4,
+        categoryName:'fetish'
       },
       {
         id: 5,
-        categoryName: 'other',
+        categoryName: 'other'
       },
       {
         id: 6,
-        categoryName: 'disability',
-      },
+        categoryName: 'disability'
+      }
     ])
   }
 }

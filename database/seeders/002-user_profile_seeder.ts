@@ -13,7 +13,7 @@ export default class extends BaseSeeder {
         weight: 12,
         penis_size: 4,
         hairColor: 'auburn',
-        eyeColor: 'jaune cyrose',
+        eyeColor: 'jaune cyrose'
       },
       {
         id: 2,
@@ -24,7 +24,7 @@ export default class extends BaseSeeder {
         weight: 12,
         bra_cup: 'bonnet A',
         hairColor: 'auburn',
-        eyeColor: 'jaune cyrose',
+        eyeColor: 'jaune cyrose'
       },
       {
         id: 3,
@@ -36,7 +36,7 @@ export default class extends BaseSeeder {
         penis_size: 8,
         bra_cup: 'bonnet B',
         hairColor: 'auburn',
-        eyeColor: 'jaune cyrose',
+        eyeColor: 'jaune cyrose'
       },
       {
         id: 4,
@@ -47,7 +47,7 @@ export default class extends BaseSeeder {
         weight: 12,
         penis_size: 10,
         hairColor: 'auburn',
-        eyeColor: 'jaune cyrose',
+        eyeColor: 'jaune cyrose'
       },
       {
         id: 5,
@@ -58,8 +58,8 @@ export default class extends BaseSeeder {
         weight: 12,
         bra_cup: 'bonnet C',
         hairColor: 'auburn',
-        eyeColor: 'jaune cyrose',
-      },
+        eyeColor: 'jaune cyrose'
+      }
     ])
   }
 }

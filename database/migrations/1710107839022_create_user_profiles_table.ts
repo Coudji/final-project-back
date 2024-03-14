@@ -15,7 +15,7 @@ export default class extends BaseSchema {
       table.string('bra_cup').nullable()
       table.string('hair_color').nullable()
       table.string('eye_color').nullable()
-
+      
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
