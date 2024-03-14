@@ -4,6 +4,7 @@ export const userValidator = vine.compile(
   vine.object({
     firstname: vine.string(),
     lastname: vine.string(),
+    niss: vine.string(),
     nickname: vine.string().minLength(3).maxLength(20),
     email: vine.string().email().unique(async (query, field) => {
       const user = await query.from('users').where('email', field).first();
