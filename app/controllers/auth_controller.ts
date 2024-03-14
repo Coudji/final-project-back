@@ -13,6 +13,7 @@ export default class AuthController {
       token: {
         value: token.value!.release(),
         expiration: token.expiresAt,
+        'isadmin': user.userType === 'admin' ? true : false,
       },
       ...user.serialize(),
     })

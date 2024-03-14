@@ -15,8 +15,9 @@ export default class extends BaseSeeder {
           street: 'oulalalala',
           number: '7',
           city: 'Berninois',
-          zip_code: 7500,
+          zip_code: 7500
         },
+        userType: 'admin'
       },
       {
         id: 2,
@@ -29,7 +30,7 @@ export default class extends BaseSeeder {
           street: 'oulalalala2',
           number: '7b',
           city: 'Berninois',
-          zip_code: 7500,
+          zip_code: 7500       
         },
       },
       {

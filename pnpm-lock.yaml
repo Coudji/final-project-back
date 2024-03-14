@@ -9,7 +9,7 @@ dependencies:
     specifier: ^9.1.1
     version: 9.1.1(@adonisjs/assembler@7.2.3)(@adonisjs/core@6.3.1)(@adonisjs/lucid@20.3.1)(@japa/api-client@2.0.2)(@japa/plugin-adonisjs@3.0.0)
   '@adonisjs/core':
-    specifier: ^6.2.2
+    specifier: ^6.3.1
     version: 6.3.1(@adonisjs/assembler@7.2.3)(@vinejs/vine@1.7.1)
   '@adonisjs/cors':
     specifier: ^2.2.1
