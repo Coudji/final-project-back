@@ -5,11 +5,11 @@ export default class NeuneusController {
   /**
    * Display a list of resource
    */
-  async index({response}: HttpContext) {
+  async index({ response }: HttpContext) {
     const users = await User.query().preload('userProfile').preload('announce')
     //const users = await User.all()
     return response.ok({
-      users
+      users,
     })
   }
 
@@ -37,15 +37,13 @@ export default class NeuneusController {
    * Handle form submission for the edit action
    */
   async update({ params, request }: HttpContext) {
-
     const user = await User.findOrFail(params.id)
     user.nickname = request.body().nickname
     await user.save()
     return {
-      "nickname": user.nickname,
-      "updatedAt": user.updatedAt
+      nickname: user.nickname,
+      updatedAt: user.updatedAt,
     }
-    
   }
 
   /**

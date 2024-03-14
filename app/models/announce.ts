@@ -10,10 +10,10 @@ export default class Announce extends BaseModel {
 
   @column()
   declare title: string
-  
+
   @column()
   declare description: string
-  
+
   @column()
   declare infidelityCard: boolean
 

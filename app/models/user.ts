@@ -29,7 +29,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare email: string
 
-  @column({serializeAs:null})
+  @column({ serializeAs: null })
   declare password: string
 
   @column()
@@ -41,7 +41,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @hasOne(() => Announce)
   declare announce: HasOne<typeof Announce>
 
-  @column()
+  @column({ serializeAs: null })
   declare userType: string
 
   @column.dateTime({ autoCreate: true })
@@ -51,6 +51,6 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare updatedAt: DateTime | null
 
   static accessTokens = DbAccessTokensProvider.forModel(User, {
-    expiresIn: '2h'
+    expiresIn: '2h',
   })
 }
