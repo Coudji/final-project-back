@@ -24,6 +24,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare lastname: string
 
   @column()
+  declare niss: string
+
+  @column()
   declare nickname: string | null
 
   @column()
