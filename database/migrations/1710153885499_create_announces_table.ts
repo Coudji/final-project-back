@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.boolean('infidelity_card').nullable()
       table.boolean('private').notNullable()
       table.boolean('escort').notNullable()
-      table.string('practices').notNullable()
+      table.specificType('practices', 'integer[]').notNullable()
       table.json('pricing').notNullable()
       table.timestamp('created_at').nullable()
       table.timestamp('updated_at').nullable()
