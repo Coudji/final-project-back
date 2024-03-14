@@ -5,7 +5,6 @@ export default class extends BaseSeeder {
   async run() {
     await User.createMany([
       {
-        id: 1,
         firstname: 'Jean-Marc',
         lastname: 'Panacloc',
         nickname: 'JP',
@@ -20,7 +19,6 @@ export default class extends BaseSeeder {
         userType: 'admin'
       },
       {
-        id: 2,
         firstname: 'Francky',
         lastname: 'Tchibozomique',
         nickname: 'FT1',
@@ -34,7 +32,6 @@ export default class extends BaseSeeder {
         },
       },
       {
-        id: 3,
         firstname: 'Jeff',
         lastname: 'Colcanap',
         nickname: 'FT2',
@@ -48,7 +45,6 @@ export default class extends BaseSeeder {
         },
       },
       {
-        id: 4,
         firstname: 'Jean',
         lastname: 'Culle',
         nickname: 'FT3',
@@ -62,7 +58,6 @@ export default class extends BaseSeeder {
         },
       },
       {
-        id: 5,
         firstname: 'Nick',
         lastname: 'Lenain',
         nickname: 'FT24',
