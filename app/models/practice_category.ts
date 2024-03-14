@@ -9,6 +9,6 @@ export default class PracticeCategory extends BaseModel {
   @column()
   declare categoryName: string
 
-  @hasMany(()=> Practice)
-  declare practices:HasMany<typeof Practice>
+  @hasMany(() => Practice)
+  declare practices: HasMany<typeof Practice>
 }

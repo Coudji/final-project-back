@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
       table.string('title', 64).notNullable()
-      table.string('description',600).notNullable()
+      table.string('description', 600).notNullable()
       table.boolean('infidelity_card').nullable()
       table.boolean('private').nullable()
       table.boolean('escort').nullable()
