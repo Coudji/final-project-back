@@ -8,12 +8,18 @@ export default class AnnounceController {
   }
 
   async getOneAnnounce({ params, response }: HttpContext) {
-    const announce = Announce.findOrFail(params.id)
+    const announce = await Announce.findByOrFail('user_id', params.id)
     return response.ok({ announce })
   }
 
   async createAnnounce({ request, response }: HttpContext) {
     Announce.create(request.body())
     return response.ok('ok')
+  }
+
+  async updateAnnounce({ params, request, response }: HttpContext) {
+    const announce = await Announce.findByOrFail('user_id', params.id)
+    announce.merge(request.body())
+    return response.ok('okok')
   }
 }
