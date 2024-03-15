@@ -54,17 +54,17 @@ router
       .prefix('user')
       .use(middleware.auth())
 
-    router
-      .group(() => {
-        router.get('', [AnnounceController, 'getAllAnnounces'])
-        router.get(':id', [AnnounceController, 'getOneAnnounce'])
-        router.post('', [AnnounceController, 'createAnnounce'])
-        router.patch(':id', [AnnounceController, 'updateAnnounce'])
-        router.delete(':id', [AnnounceController, 'deleteAnnounce'])
-      })
-      .prefix('announce')
-      .use(middleware.auth())
-
     router.get('practices', [PracticesController,'getAllPractices']).use(middleware.auth())
+
+    router
+    .group(() => {
+      router.get('', [AnnounceController, 'getAllAnnounces'])
+      router.get(':id', [AnnounceController, 'getOneAnnounce'])
+      router.post('', [AnnounceController, 'createAnnounce'])
+      router.patch(':id', [AnnounceController, 'updateAnnounce'])
+      router.delete(':id', [AnnounceController, 'deleteAnnounce'])
+    })
+    .prefix('announce')
+    .use(middleware.auth())
   })
   .prefix('api')
