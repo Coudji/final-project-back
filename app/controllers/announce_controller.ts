@@ -22,4 +22,15 @@ export default class AnnounceController {
     announce.merge(request.body())
     return response.ok('okok')
   }
+
+  async deleteAnnounce({ params, auth, response }: HttpContext) {
+    const user = await auth.authenticate()
+    const announce = await Announce.findOrFail(params.id)
+    if (announce.userId === user.id) {
+      await announce.delete()
+      return response.ok({
+        message: `Announce ${params.id} has been deleted`,
+      })
+    }
+  }
 }
