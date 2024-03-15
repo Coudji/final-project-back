@@ -32,7 +32,7 @@ router
         router.get(':id/announce', [AnnounceController, 'getOneAnnounce'])
         router.post(':id/announce', [AnnounceController, 'createAnnounce'])
         router.patch(':id/announce', [AnnounceController, 'updateAnnounce'])
-        router.delete(':id/announce/delete', [AnnounceController, 'deleteAnnounce'])
+        router.delete(':id/announce', [AnnounceController, 'deleteAnnounce'])
       })
       .prefix('user')
       .use(middleware.auth())
