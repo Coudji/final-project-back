@@ -9,7 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-import AnnounceController from '#controllers/announce_controller'
+const AnnounceController = () => import('#controllers/announce_controller') 
 const AuthController = () => import('#controllers/auth_controller')
 const UserController = () => import('#controllers/user_controller')
 const PracticesController = () => import ('#controllers/practices_controller')
