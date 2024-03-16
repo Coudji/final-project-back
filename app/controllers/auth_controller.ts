@@ -1,5 +1,5 @@
 import User from '#models/user'
-import { loginValidator, registerValidator } from '#validators/auth'
+import { loginValidator, registerValidator } from '#validators/auth_validator'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class AuthController {
@@ -13,7 +13,7 @@ export default class AuthController {
       token: {
         value: token.value!.release(),
         expiration: token.expiresAt,
-        'isadmin': user.userType === 'admin' ? true : false,
+        isadmin: user.userType === 'admin' ? true : false,
       },
       ...user.serialize(),
     })
