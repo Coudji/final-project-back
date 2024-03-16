@@ -1,21 +1,38 @@
-import vine from '@vinejs/vine';
+import vine from '@vinejs/vine'
 
-export const userValidator = vine.compile(
+export const patchUserValidator = vine.compile(
   vine.object({
-    firstname: vine.string(),
-    lastname: vine.string(),
-    niss: vine.string(),
-    nickname: vine.string().minLength(3).maxLength(20),
-    email: vine.string().email().unique(async (query, field) => {
-      const user = await query.from('users').where('email', field).first();
-      return !user;
-    }),
-    password: vine.string().minLength(8).maxLength(32),
-    address: vine.object({
-      street: vine.string(),
-      number: vine.string(),
-      city: vine.string(),
-      zip_code: vine.number()
-    })
+    firstname: vine.string().optional(),
+    lastname: vine.string().optional(),
+    nickname: vine.string().minLength(3).maxLength(20).optional(),
+    email: vine
+      .string()
+      .email()
+      .unique(async (query, field) => {
+        const user = await query.from('users').where('email', field).first()
+        return !user
+      })
+      .optional(),
+    password: vine.string().minLength(8).maxLength(32).optional(),
+    niss: vine.string().optional(),
+    address: vine
+      .object({
+        street: vine.string(),
+        number: vine.string(),
+        city: vine.string(),
+        zip_code: vine.number(),
+      })
+      .optional(),
   })
-);
+)
+
+export const userExistValidator = vine.compile(
+  vine.object({
+    params: vine.object({
+      id: vine.number().exists(async (query, id) => {
+        const user = await query.from('users').where('id', id).first()
+        return !!user
+      }),
+    }),
+  })
+)
