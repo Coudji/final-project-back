@@ -26,7 +26,7 @@ export default class extends BaseSeeder {
       },
       {
         userId: 3,
-        genre: 'déviant',
+        genre: 'transformers',
         orientation: 'pas difficile',
         size: 5,
         weight: 12,

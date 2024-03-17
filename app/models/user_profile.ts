@@ -9,7 +9,7 @@ export default class UserProfile extends BaseModel {
   declare userId: number
 
   @column()
-  declare genre: 'homme' | 'femme' | 'robot' | 'déviant'
+  declare genre: 'homme' | 'femme' | 'robot' | 'transgenre' | 'transexuel' | 'transformers'
 
   @column()
   declare orientation: 'hétéro' | 'homo' | 'pas difficile' | 'plug & play'
