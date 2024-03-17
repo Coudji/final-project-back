@@ -33,8 +33,8 @@ export default class extends BaseSchema {
   }
 
   async down() {
-    this.schema.raw('DROP TYPE IF EXIST "user_profile_orientation"')
-    this.schema.raw('DROP TYPE IF EXIST "user_profile_genre"')
+    this.schema.raw('DROP TYPE IF EXIST "user_profile_orientation" CASCADE')
+    this.schema.raw('DROP TYPE IF EXIST "user_profile_genre" CASCADE')
     this.schema.dropTable(this.tableName)
   }
 }
