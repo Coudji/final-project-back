@@ -2,7 +2,7 @@ import vine from '@vinejs/vine'
 
 export const userProfileValidator = vine.compile(
   vine.object({
-    genre: vine.enum(['homme', 'femme', 'robot', 'déviant']),
+    genre: vine.enum(['homme', 'femme', 'robot', 'transgenre', 'transexuel', 'transformers']),
     orientation: vine.enum(['hétéro', 'homo', 'pas difficile', 'plug & play']),
     size: vine.number().optional(),
     weight: vine.number().optional(),

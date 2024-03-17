@@ -7,7 +7,11 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
-      table.string('genre').notNullable()
+      //table.string('genre').notNullable()
+      table.enum('genre', ['homme', 'femme', 'robot', 'transgenre', 'transexuel', 'transformers'], {
+        useNative: true,
+        enumName: 'user_profile_genre',
+      })
       //table.string('orientation').notNullable()
       table
         .enum('orientation', ['hétéro', 'homo', 'pas difficile', 'plug & play'], {
@@ -29,6 +33,7 @@ export default class extends BaseSchema {
 
   async down() {
     this.schema.raw('DROP TYPE IF EXIST "user_profile_orientation"')
+    this.schema.raw('DROP TYPE IF EXIST "user_profile_genre"')
     this.schema.dropTable(this.tableName)
   }
 }
