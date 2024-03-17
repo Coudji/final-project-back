@@ -7,7 +7,7 @@ export default class extends BaseSeeder {
       {
         userId: 1,
         genre: 'homme',
-        orientation: 'à gauche?',
+        orientation: 'hétéro',
         size: 5,
         weight: 12,
         penis_size: 4,
@@ -17,7 +17,7 @@ export default class extends BaseSeeder {
       {
         userId: 2,
         genre: 'femme',
-        orientation: 'à droite?',
+        orientation: 'homo',
         size: 5,
         weight: 12,
         bra_cup: 'bonnet A',
@@ -27,7 +27,7 @@ export default class extends BaseSeeder {
       {
         userId: 3,
         genre: 'déviant',
-        orientation: 'en haut?',
+        orientation: 'pas difficile',
         size: 5,
         weight: 12,
         penis_size: 8,
@@ -38,7 +38,7 @@ export default class extends BaseSeeder {
       {
         userId: 4,
         genre: 'robot',
-        orientation: 'en bas?',
+        orientation: 'plug & play',
         size: 5,
         weight: 12,
         penis_size: 10,
@@ -48,7 +48,7 @@ export default class extends BaseSeeder {
       {
         userId: 5,
         genre: 'femme',
-        orientation: 'tout droit?',
+        orientation: 'hétéro',
         size: 5,
         weight: 12,
         bra_cup: 'bonnet C',

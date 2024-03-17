@@ -1,15 +1,25 @@
-import vine from '@vinejs/vine';
+import vine from '@vinejs/vine'
 
 export const userProfileValidator = vine.compile(
   vine.object({
-    userId: vine.number(),
     genre: vine.enum(['homme', 'femme', 'robot', 'déviant']),
-    orientation: vine.string(),
-    size: vine.number(),
-    weight: vine.number(),
-    penis_size: vine.number(),
-    bra_cup: vine.string(),
-    hairColor: vine.string(),
-    eyeColor: vine.string(),
+    orientation: vine.enum(['hétéro', 'homo', 'pas difficile', 'plug & play']),
+    size: vine.number().optional(),
+    weight: vine.number().optional(),
+    penis_size: vine.number().optional(),
+    bra_cup: vine.string().optional(),
+    hairColor: vine.string().optional(),
+    eyeColor: vine.string().optional(),
   })
-);
+)
+
+export const userProfileExistValidator = vine.compile(
+  vine.object({
+    params: vine.object({
+      id: vine.number().exists(async (query, id) => {
+        const userProfile = await query.from('user_profiles').where('user_id', id).first()
+        return !!userProfile
+      }),
+    }),
+  })
+)
