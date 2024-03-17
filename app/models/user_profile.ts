@@ -12,7 +12,7 @@ export default class UserProfile extends BaseModel {
   declare genre: 'homme' | 'femme' | 'robot' | 'déviant'
 
   @column()
-  declare orientation: string
+  declare orientation: 'hétéro' | 'homo' | 'pas difficile' | 'plug & play'
 
   @column()
   declare size: number

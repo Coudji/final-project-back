@@ -2,24 +2,32 @@
 
 ## Installer les dépendances :
 
-`npm run dev`
+`npm i`
 
 ## Intaller la DB et la lancer :
 
 `docker compose up -d`
 
-## Structurer la db :
+## Setup les variable d'environnement :
+
+Renommez le fichier .env.example en .env et complétez :
+```
+DB_PASSWORD=postmdp
+DB_DATABASE=comixdb
+```
+
+## Lancer le serveur en mode dev :
+
+`npm run dev`
+
+## Lancer la création des tables :
 
 `node ace migration:run`
-
-## Recréer la db :
-
-`node ace migration:refresh`
 
 ## Peupler la db :
 
 `node ace db:seed`
 
-## Lancer le serveur en mode dev :
+## effacer toutes les tables :
 
-`npm run dev`
+`node ace db:wipe`

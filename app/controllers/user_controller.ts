@@ -1,4 +1,5 @@
 import User from '#models/user'
+import { patchUserValidator, userExistValidator } from '#validators/user_validator'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class UserController {
@@ -10,14 +11,16 @@ export default class UserController {
     })
   }
 
-  async getOneUser({ params, response }: HttpContext) {
+  async getOneUser({ params, request, response }: HttpContext) {
+    await request.validateUsing(userExistValidator)
     const user = await User.findOrFail(params.id)
     return response.ok({
       user,
     })
   }
 
-  async getOneFullUser({ params, response }: HttpContext) {
+  async getOneFullUser({ params, request, response }: HttpContext) {
+    await request.validateUsing(userExistValidator)
     const user = await User.query()
       .where('id', params.id)
       .preload('userProfile')
@@ -27,20 +30,29 @@ export default class UserController {
     })
   }
 
-  async updateOneUser({ params, request }: HttpContext) {
+  async updateOneUser({ params, request, response }: HttpContext) {
+    await request.validateUsing(userExistValidator)
+    await request.validateUsing(patchUserValidator)
+
     const user = await User.findOrFail(params.id)
-    const reqData = request.body()
-    user.merge(reqData)
+    const reqBody = request.body()
+    user.merge(reqBody)
     await user.save()
-    return {
-      nickname: user.nickname,
-      updatedAt: user.updatedAt,
-    }
+    return response.ok({
+      message: `user ${params.id} has been updated`,
+    })
   }
 
-  async destroy({ auth, params, response }: HttpContext) {
+  async deleteOneUser({ auth, params, request, response }: HttpContext) {
+    await request.validateUsing(userExistValidator)
     const user = await auth.authenticate()
-    if (user.id === +params.id) {//ajouter une vérif admin
+
+    if (user.id !== +params.id && user.userType !== 'admin') {
+      return response.status(401).json({
+        message: 'Unauthorized access',
+      })
+    }
+    if (user.id === +params.id || user.userType === 'admin') {
       await user.delete()
       return response.ok({
         message: `user ${params.id} has been deleted`,
