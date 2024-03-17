@@ -20,8 +20,8 @@ export default class extends BaseSchema {
           enumName: 'user_profile_orientation',
         })
         .notNullable()
-      table.string('size').nullable()
-      table.string('weight').nullable()
+      table.integer('size').nullable()
+      table.integer('weight').nullable()
       table.integer('penis_size').nullable()
       table.string('bra_cup').nullable()
       table.string('hair_color').nullable()
