@@ -1,5 +1,6 @@
 import Announce from '#models/announce'
 import type { HttpContext } from '@adonisjs/core/http'
+import { announceValidator } from '#validators/announce_validator'
 
 export default class AnnounceController {
   async getAllAnnounces({ response }: HttpContext) {
@@ -28,7 +29,8 @@ export default class AnnounceController {
 
   async createAnnounce({ request, response }: HttpContext) {
     try {
-      Announce.create(request.body())
+      const validatedData = await announceValidator.validate(request.body())
+      Announce.create(validatedData)
       return response.ok('ok')
     } catch (error) {
         return response.status(500).json({ 
@@ -39,8 +41,9 @@ export default class AnnounceController {
 
   async updateAnnounce({ params, request, response }: HttpContext) {
     try {
+      const validatedData = await announceValidator.validate(request.body())
       const announce = await Announce.findByOrFail('user_id', params.id)
-      announce.merge(request.body())
+      announce.merge(validatedData)
       return response.ok('okok')
     } catch (error) {
         return response.status(500).json({ 

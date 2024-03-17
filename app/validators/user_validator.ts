@@ -2,8 +2,8 @@ import vine from '@vinejs/vine'
 
 export const patchUserValidator = vine.compile(
   vine.object({
-    firstname: vine.string().optional(),
-    lastname: vine.string().optional(),
+    firstname: vine.string().maxLength(20).optional(),
+    lastname: vine.string().maxLength(20).optional(),
     nickname: vine.string().minLength(3).maxLength(20).optional(),
     email: vine
       .string()
@@ -12,6 +12,7 @@ export const patchUserValidator = vine.compile(
         const user = await query.from('users').where('email', field).first()
         return !user
       })
+      .maxLength(254)
       .optional(),
     password: vine.string().minLength(8).maxLength(32).optional(),
     niss: vine.string().optional(),
