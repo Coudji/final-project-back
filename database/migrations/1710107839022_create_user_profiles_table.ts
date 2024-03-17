@@ -12,6 +12,7 @@ export default class extends BaseSchema {
         useNative: true,
         enumName: 'user_profile_genre',
       })
+      .notNullable()
       //table.string('orientation').notNullable()
       table
         .enum('orientation', ['hétéro', 'homo', 'pas difficile', 'plug & play'], {

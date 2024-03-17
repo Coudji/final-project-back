@@ -15,7 +15,7 @@ export const patchUserValidator = vine.compile(
       .maxLength(254)
       .optional(),
     password: vine.string().minLength(8).maxLength(32).optional(),
-    niss: vine.string().optional(),
+    niss: vine.string().maxLength(15).optional(),
     address: vine
       .object({
         street: vine.string(),
