@@ -43,10 +43,16 @@ export default class UserController {
     })
   }
 
-  async destroy({ auth, params, request, response }: HttpContext) {
+  async deleteOneUser({ auth, params, request, response }: HttpContext) {
     await request.validateUsing(userExistValidator)
     const user = await auth.authenticate()
-    if (user.id === +params.id) {
+
+    if (user.id !== +params.id && user.userType !== 'admin') {
+      return response.status(401).json({
+        message: 'Unauthorized access',
+      })
+    }
+    if (user.id === +params.id || user.userType === 'admin') {
       await user.delete()
       return response.ok({
         message: `user ${params.id} has been deleted`,

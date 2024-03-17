@@ -29,7 +29,7 @@ router
         router.get(':id', [UserController, 'getOneUser'])
         router.get(':id/full', [UserController, 'getOneFullUser'])
         router.patch(':id', [UserController, 'updateOneUser'])
-        router.delete(':id', [UserController, 'destroy'])
+        router.delete(':id', [UserController, 'deleteOneUser'])
         router.get(':id/profile', [UserProfilesController, 'getUserProfile'])
         router.post(':id/profile', [UserProfilesController, 'upsertUserProfile'])
         router.patch(':id/profile', [UserProfilesController, 'upsertUserProfile'])
