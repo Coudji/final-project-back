@@ -4,7 +4,9 @@ import { announceValidator } from '#validators/announce_validator'
 
 export default class AnnounceController {
   async getAllAnnounces({ response }: HttpContext) {
-    try {
+    const announces = await Announce.all()
+        return response.ok(announces)
+    /* try {
         const announces = await Announce.all()
         return response.ok({ 
             announces 
@@ -13,7 +15,7 @@ export default class AnnounceController {
         return response.status(500).json({ 
             error: 'Internal Server Error' 
         })
-    }
+    } */
   }
 
   async getOneAnnounce({ params, response }: HttpContext) {
@@ -27,16 +29,13 @@ export default class AnnounceController {
     }
   }
 
-  async createAnnounce({ request, response }: HttpContext) {
-    try {
-      const validatedData = await announceValidator.validate(request.body())
-      Announce.create(validatedData)
-      return response.ok('ok')
-    } catch (error) {
-        return response.status(500).json({ 
-          error: 'Internal Server Error' 
-      })
-    }
+  async createAnnounce({ params, request, response }: HttpContext) {
+    await request.validateUsing(announceValidator)
+    const announce = await Announce.updateOrCreate({ userId: params.id}, request.body())
+    announce.save()
+    return response.ok({
+      message: `Announce for user ${params.id} has been created`
+    })
   }
 
   async updateAnnounce({ params, request, response }: HttpContext) {

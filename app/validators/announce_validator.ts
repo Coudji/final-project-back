@@ -1,7 +1,7 @@
 import vine from '@vinejs/vine';
 
 export const announceValidator = vine.compile(
-  vine.object({
+  /* vine.object({
     userId: vine.number(),
     title: vine.string().maxLength(64),
     description: vine.string().minLength(3).maxLength(600),
@@ -15,5 +15,12 @@ export const announceValidator = vine.compile(
         '45min': vine.number(),
         '60min': vine.number(),
     })
+  }) */
+  vine.object({
+    userId: vine.number(),
+    title: vine.string().maxLength(64),
+    description: vine.string().minLength(3).maxLength(600),
+    private: vine.boolean(),
+    escort: vine.boolean(),
   })
 );
