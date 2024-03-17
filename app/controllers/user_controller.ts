@@ -37,7 +37,7 @@ export default class UserController {
     const user = await User.findOrFail(params.id)
     const reqBody = request.body()
     user.merge(reqBody)
-    user.save()
+    await user.save()
     return response.ok({
       message: `user ${params.id} has been updated`,
     })
