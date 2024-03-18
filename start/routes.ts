@@ -9,9 +9,11 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-const NeuneusController = () => import('#controllers/neuneus_controller')
 const AuthController = () => import('#controllers/auth_controller')
 const UserController = () => import('#controllers/user_controller')
+const UserProfilesController = () => import('#controllers/user_profiles_controller')
+const PracticesController = () => import('#controllers/practices_controller')
+const AnnounceController = () => import('#controllers/announce_controller')
 
 router
   .group(() => {
@@ -23,36 +25,26 @@ router
 router
   .group(() => {
     router
-      .get('me', async ({ auth, response }) => {
-        const user = await auth.authenticate()
-        return response.ok({
-          ...user.serialize(),
-          ' e': user.userType,
-          'isadmin': user.userType === 'admin' ? true : false,
-        })
-      })
-      .use(middleware.auth())
-
-    router
-      .get('isadmin', async ({ auth, response }) => {
-        const user = await auth.authenticate()
-        if (user.userType === 'admin') {
-          return response.ok({ isAdmin: true })
-        }
-        return response.ok({ isAdmin: false })
-      })
-      .use(middleware.auth())
-
-    router.resource('neuneu', NeuneusController).use(['index', 'update'], middleware.auth())
-    //router.resource('user', UserController).use(['index', 'update'], middleware.auth())
-    router
       .group(() => {
+        router.get('all', [UserController, 'getAllUsers'])
         router.get(':id', [UserController, 'getOneUser'])
         router.get(':id/full', [UserController, 'getOneFullUser'])
         router.patch(':id', [UserController, 'updateOneUser'])
-        router.delete(':id', [UserController, 'destroy'])
+        router.delete(':id', [UserController, 'deleteOneUser'])
+        router.get(':id/profile', [UserProfilesController, 'getUserProfile'])
+        router.post(':id/profile', [UserProfilesController, 'upsertUserProfile'])
+        router.patch(':id/profile', [UserProfilesController, 'upsertUserProfile'])
+        router.delete(':id/profile', [UserProfilesController, 'deleteUserProfile'])
+        router.get(':id/announce', [AnnounceController, 'getOneAnnounce'])
+        router.post(':id/announce', [AnnounceController, 'createAnnounce'])
+        router.patch(':id/announce', [AnnounceController, 'updateAnnounce'])
+        router.delete(':id/announce', [AnnounceController, 'deleteAnnounce'])
       })
       .prefix('user')
       .use(middleware.auth())
+
+    router.get('practices', [PracticesController, 'getAllPractices']).use(middleware.auth())
+    router.get('profiles', [UserProfilesController, 'getAllUserProfile']).use(middleware.auth())
+    router.get('announces', [AnnounceController, 'getAllAnnounces']).use(middleware.auth())
   })
   .prefix('api')
