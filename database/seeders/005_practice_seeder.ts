@@ -25,23 +25,23 @@ export default class extends BaseSeeder {
         practiceCategoryId: 1,
       },
       {
-        practiceName: 'fellation sans capotes',
+        practiceName: 'sucer une aubergine ss capotes',
         practiceCategoryId: 2,
       },
       {
-        practiceName: 'fellation avec capotes',
+        practiceName: 'sucer une aubergine avec capotes',
         practiceCategoryId: 2,
       },
       {
-        practiceName: 'cunnilingus',
+        practiceName: 'sucer un abricot',
         practiceCategoryId: 2,
       },
       {
-        practiceName: 'doigter',
+        practiceName: 'le doigt qui pue',
         practiceCategoryId: 2,
       },
       {
-        practiceName: 'embrasser avec la langue',
+        practiceName: 'échange de salive post covid',
         practiceCategoryId: 2,
       },
       {
@@ -49,35 +49,35 @@ export default class extends BaseSeeder {
         practiceCategoryId: 2,
       },
       {
-        practiceName: 'sexe sans capotes',
+        practiceName: 'jambes en l\'air sans protection',
         practiceCategoryId: 3,
       },
       {
-        practiceName: 'sexe avec capotes',
+        practiceName: 'jambes en l\'air avec protection',
         practiceCategoryId: 3,
       },
       {
-        practiceName: 'double pénétration',
+        practiceName: 'double péné et on ne parle pas de pâtes',
         practiceCategoryId: 3,
       },
       {
-        practiceName: 'sodomie',
+        practiceName: 'visite du tunnel arrière',
         practiceCategoryId: 3,
       },
       {
-        practiceName: 'avaler du sperme',
+        practiceName: 'avaler du jus d\'aubergine',
         practiceCategoryId: 3,
       },
       {
-        practiceName: 'éjaculer sur les seins ou sur le corps',
+        practiceName: 'peinture abstraite sur le corps',
         practiceCategoryId: 3,
       },
       {
-        practiceName: 'éjaculer sur le visage',
+        practiceName: 'peinture sur le visage',
         practiceCategoryId: 3,
       },
       {
-        practiceName: 'éjaculer dans la bouche',
+        practiceName: 'peinture dans la bouche',
         practiceCategoryId: 3,
       },
       {
@@ -113,7 +113,7 @@ export default class extends BaseSeeder {
         practiceCategoryId: 4,
       },
       {
-        practiceName: 'fist / ventriloquie',
+        practiceName: 'ventriloquie',
         practiceCategoryId: 4,
       },
       {
@@ -137,11 +137,11 @@ export default class extends BaseSeeder {
         practiceCategoryId: 5,
       },
       {
-        practiceName: 'sexe en voiture',
+        practiceName: 'partie de jambes en l\'air en voiture',
         practiceCategoryId: 5,
       },
       {
-        practiceName: 'sexe en plein air',
+        practiceName: 'partie de jambes en l\'air en plein air',
         practiceCategoryId: 5,
       },
       {
