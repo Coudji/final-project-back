@@ -8,8 +8,7 @@ export default class AnnounceController {
         return response.ok(announces)
   }
 
-  async getOneAnnounce({ params, response, request }: HttpContext) {
-    await request.validateUsing(announceValidator)    
+  async getOneAnnounce({ params, response }: HttpContext) {    
     const announce = await Announce.findByOrFail('user_id', params.id)
     return response.ok({
       message: `Announce for user ${params.id}`,

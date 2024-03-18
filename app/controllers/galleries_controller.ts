@@ -1,4 +1,5 @@
 import Gallery from '#models/gallery'
+import {  galleryValidator } from '#validators/gallery_validator'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class GalleriesController {
@@ -9,6 +10,7 @@ export default class GalleriesController {
     }
 
     async addFileName({ auth, params, request, response }:HttpContext) {
+        await request.validateUsing(galleryValidator)
         const user = await auth.authenticate()
 
         if (user.id !== +params.id) return response.status(403).json({message: "↑↑↓↓←←→→AB"})
@@ -21,8 +23,8 @@ export default class GalleriesController {
         
     }
 
-    async updateFile({ params, response }: HttpContext) {
-        // await validator exist
+    async updateFile({ params, response}: HttpContext) {
+        //await request.validateUsing(fileExistValidator)
         const file = await Gallery.findByOrFail('fileName', params.name)
         const oldCover = await Gallery.query().where('userId', params.id).andWhere('cover', true).firstOrFail()
         
