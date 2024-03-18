@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('user_id')
       table.string('file_name')
-      table.boolean('cover')
+      table.boolean('cover').defaultTo(false)
     })
   }
 
