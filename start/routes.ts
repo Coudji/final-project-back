@@ -14,6 +14,7 @@ const UserController = () => import('#controllers/user_controller')
 const UserProfilesController = () => import('#controllers/user_profiles_controller')
 const PracticesController = () => import('#controllers/practices_controller')
 const AnnounceController = () => import('#controllers/announce_controller')
+const GalleriesController = () => import('#controllers/galleries_controller')
 
 router
   .group(() => {
@@ -27,6 +28,7 @@ router
     router
       .group(() => {
         router.get('all', [UserController, 'getAllUsers'])
+        router.get('all/full', [UserController, 'getAllFullUsers'])
         router.get(':id', [UserController, 'getOneUser'])
         router.get(':id/full', [UserController, 'getOneFullUser'])
         router.patch(':id', [UserController, 'updateOneUser'])
@@ -39,6 +41,10 @@ router
         router.post(':id/announce', [AnnounceController, 'createAnnounce'])
         router.patch(':id/announce', [AnnounceController, 'updateAnnounce'])
         router.delete(':id/announce', [AnnounceController, 'deleteAnnounce'])
+        router.get(':id/gallery', [GalleriesController, 'getFiles'])
+        router.post(':id/gallery', [GalleriesController, 'addFileName'])
+        router.patch(':id/gallery/:name', [GalleriesController, 'updateFile'])
+        router.delete(':id/gallery/:name', [GalleriesController, 'removeFileName'])
       })
       .prefix('user')
       .use(middleware.auth())
@@ -46,5 +52,6 @@ router
     router.get('practices', [PracticesController, 'getAllPractices']).use(middleware.auth())
     router.get('profiles', [UserProfilesController, 'getAllUserProfile']).use(middleware.auth())
     router.get('announces', [AnnounceController, 'getAllAnnounces']).use(middleware.auth())
+    
   })
   .prefix('api')
