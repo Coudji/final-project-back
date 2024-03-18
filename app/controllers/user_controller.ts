@@ -10,6 +10,13 @@ export default class UserController {
     })
   }
 
+  async getAllFullUsers({ response }: HttpContext) {
+    const users = await User.query().preload('announce').preload('userProfile')
+    return response.ok({
+      users,
+    })
+  }
+
   async getOneUser({ params, request, response }: HttpContext) {
     await request.validateUsing(userExistValidator)
     const user = await User.findOrFail(params.id)
