@@ -18,15 +18,13 @@ export default class AnnounceController {
     } */
   }
 
-  async getOneAnnounce({ params, response }: HttpContext) {
-    try {
-      const announce = await Announce.findByOrFail('user_id', params.id)
-      return response.ok({ announce })
-    } catch (error) {
-      return response.status(500).json({ 
-        error: 'Internal Server Error' 
-      })
-    }
+  async getOneAnnounce({ params, response, request }: HttpContext) {
+    await request.validateUsing(announceValidator)    
+    const announce = await Announce.findByOrFail('user_id', params.id)
+    return response.ok({
+      message: `Announce for user ${params.id}`,
+      announce: announce
+    })
   }
 
   async createAnnounce({ params, request, response }: HttpContext) {
@@ -39,31 +37,23 @@ export default class AnnounceController {
   }
 
   async updateAnnounce({ params, request, response }: HttpContext) {
-    try {
-      const validatedData = await announceValidator.validate(request.body())
-      const announce = await Announce.findByOrFail('user_id', params.id)
-      announce.merge(validatedData)
-      return response.ok('okok')
-    } catch (error) {
-        return response.status(500).json({ 
-          error: 'Internal Server Error' 
-      })
-    }
+    await request.validateUsing(announceValidator)
+    const announce = await Announce.updateOrCreate({ userId: params.id}, request.body())
+    announce.merge(request.body())
+    announce.save()
+    return response.ok({
+      message: `Announce for user ${params.id} has been updated`
+    })
   }
 
   async deleteAnnounce({ params, auth, response }: HttpContext) {
-    try {
-      const user = await auth.authenticate()
-      const announce = await Announce.findOrFail(params.id)
+    const user = await auth.authenticate()
+    const announce = await Announce.findByOrFail("userId", params.id)
       if (announce.userId === user.id) {
         await announce.delete()
         return response.ok({
-          message: `Announce ${params.id} has been deleted`,
-        })}
-    } catch (error) {
-        return response.status(500).json({ 
-          error: 'Internal Server Error' 
-      })
-    }
+          message: `Announce for user ${params.id} has been deleted`,
+        })
+      }
   }
 }
