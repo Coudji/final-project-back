@@ -10,21 +10,30 @@ export default class GalleriesController {
 
     async addFileName({ auth, params, request, response }:HttpContext) {
         const user = await auth.authenticate()
-        
-        if (user.id === +params.id){
-            await Gallery.create(request.body())
 
-            return response.ok({
-                message: 'Your file(s) has been uploaded'
-            })
-        }
+        if (user.id !== +params.id) return response.status(403).json({message: "↑↑↓↓←←→→AB"})
+        
+        await Gallery.create(request.body())
+
+        return response.ok({
+            message: 'Your file(s) has been uploaded'
+        })
+        
     }
 
-    async updateFile({ params, request }: HttpContext) {
+    async updateFile({ params, response }: HttpContext) {
         // await validator exist
-        //const file = await Gallery.findByOrFail('fileName', params.name)
-        const oldCover = await Gallery.query().where('userId', params.id).andWhere('cover', true).first()
-        oldCover.cover = !oldCover?.cover
+        const file = await Gallery.findByOrFail('fileName', params.name)
+        const oldCover = await Gallery.query().where('userId', params.id).andWhere('cover', true).firstOrFail()
+        
+        oldCover.cover = !oldCover.cover
+        await oldCover.save()
+
+        file.cover = true
+        await file.save()
+        return response.ok({
+            message: `${params.name} has been updated`
+        })
         
     }
 
