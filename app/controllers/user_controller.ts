@@ -4,8 +4,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 export default class UserController {
   async getAllUsers({ response }: HttpContext) {
-    const users = await User.query().preload('userProfile').preload('announce')
-    //const users = await User.all()
+    const users = await User.all()
     return response.ok({
       users,
     })

@@ -26,6 +26,7 @@ router
   .group(() => {
     router
       .group(() => {
+        router.get('all', [UserController, 'getAllUsers'])
         router.get(':id', [UserController, 'getOneUser'])
         router.get(':id/full', [UserController, 'getOneFullUser'])
         router.patch(':id', [UserController, 'updateOneUser'])

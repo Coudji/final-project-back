@@ -6,16 +6,6 @@ export default class AnnounceController {
   async getAllAnnounces({ response }: HttpContext) {
     const announces = await Announce.all()
         return response.ok(announces)
-    /* try {
-        const announces = await Announce.all()
-        return response.ok({ 
-            announces 
-        })
-    } catch (error) {
-        return response.status(500).json({ 
-            error: 'Internal Server Error' 
-        })
-    } */
   }
 
   async getOneAnnounce({ params, response, request }: HttpContext) {
@@ -49,7 +39,7 @@ export default class AnnounceController {
   async deleteAnnounce({ params, auth, response }: HttpContext) {
     const user = await auth.authenticate()
     const announce = await Announce.findByOrFail("userId", params.id)
-      if (announce.userId === user.id) {
+      if (announce.userId === user.id || user.userType === 'admin') {
         await announce.delete()
         return response.ok({
           message: `Announce for user ${params.id} has been deleted`,
