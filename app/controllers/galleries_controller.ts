@@ -1,5 +1,6 @@
 import Gallery from '#models/gallery'
 import type { HttpContext } from '@adonisjs/core/http'
+import db from '@adonisjs/lucid/services/db'
 
 export default class GalleriesController {
     async getFiles({ params, response }: HttpContext) {
@@ -10,10 +11,20 @@ export default class GalleriesController {
 
     async addFileName({ auth, params, request, response }:HttpContext) {
         const user = await auth.authenticate()
+        let payload = request.body()
 
         if (user.id !== +params.id) return response.status(403).json({message: "↑↑↓↓←←→→AB"})
+
+        const isFirstUpload = await db.rawQuery(
+            'select * from galleries where user_id = ? and cover = ?',
+            [+params.id,true]
+        )
+
+        if (isFirstUpload.rowCount === 0) {
+            payload['cover'] = true
+        } 
         
-        await Gallery.create(request.body())
+        await Gallery.create(payload)
 
         return response.ok({
             message: 'Your file(s) has been uploaded'
@@ -26,7 +37,7 @@ export default class GalleriesController {
         const file = await Gallery.findByOrFail('fileName', params.name)
         const oldCover = await Gallery.query().where('userId', params.id).andWhere('cover', true).firstOrFail()
         
-        oldCover.cover = !oldCover.cover
+        oldCover.cover === true ? oldCover.cover = !oldCover.cover : oldCover.cover
         await oldCover.save()
 
         file.cover = true
