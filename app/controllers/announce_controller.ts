@@ -1,6 +1,6 @@
 import Announce from '#models/announce'
 import type { HttpContext } from '@adonisjs/core/http'
-import { announceValidator } from '#validators/announce_validator'
+import { createAnnounceValidator, updateAnnounceValidator } from '#validators/announce_validator'
 
 export default class AnnounceController {
   async getAllAnnounces({ response }: HttpContext) {
@@ -17,8 +17,9 @@ export default class AnnounceController {
   }
 
   async createAnnounce({ params, request, response }: HttpContext) {
-    await request.validateUsing(announceValidator)
-    const announce = await Announce.updateOrCreate({ userId: params.id}, request.body())
+    await request.validateUsing(createAnnounceValidator)
+    request.body()['userId'] = params.id
+    const announce = await Announce.create(request.body())
     announce.save()
     return response.ok({
       message: `Announce for user ${params.id} has been created`
@@ -26,10 +27,17 @@ export default class AnnounceController {
   }
 
   async updateAnnounce({ params, request, response }: HttpContext) {
-    await request.validateUsing(announceValidator)
-    const announce = await Announce.updateOrCreate({ userId: params.id}, request.body())
-    announce.merge(request.body())
-    announce.save()
+    await request.validateUsing(updateAnnounceValidator)
+    const oldAnnounce = await Announce.findByOrFail('user_id', params.id)
+    const newAnnounce = await Announce.updateOrCreate({ status : 'PENDING'}, request.body())
+
+    
+    if(oldAnnounce.title !== newAnnounce.title || oldAnnounce.description !== newAnnounce.description) {
+     oldAnnounce.merge(newAnnounce)
+    }else{
+      oldAnnounce.merge(request.body())
+    }
+    await oldAnnounce.save()
     return response.ok({
       message: `Announce for user ${params.id} has been updated`
     })
