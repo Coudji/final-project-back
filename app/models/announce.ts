@@ -29,6 +29,9 @@ export default class Announce extends BaseModel {
   @column()
   declare pricing: Object
 
+  @column()
+  declare status: 'PENDING' | 'REFUSED' | 'VALIDED'
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

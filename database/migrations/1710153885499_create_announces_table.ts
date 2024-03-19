@@ -14,6 +14,7 @@ export default class extends BaseSchema {
       table.boolean('escort').notNullable()
       table.specificType('practices', 'integer[]').notNullable()
       table.json('pricing').notNullable()
+      table.enum('status', ['PENDING', 'REFUSED', 'VALIDED']).defaultTo('PENDING')
       table.timestamp('created_at').nullable()
       table.timestamp('updated_at').nullable()
     })

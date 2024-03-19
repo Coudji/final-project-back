@@ -1,5 +1,5 @@
 import User from '#models/user'
-import { patchUserValidator, userExistValidator } from '#validators/user_validator'
+import { patchUserValidator, userCredentialValidator, userExistValidator } from '#validators/user_validator'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class UserController {
@@ -54,8 +54,8 @@ export default class UserController {
     const user = await auth.authenticate()
 
     if (user.id !== +params.id && user.userType !== 'admin') {
-      return response.status(401).json({
-        message: 'Unauthorized access',
+      return response.status(403).json({
+        message: 'Forbidden access',
       })
     }
     if (user.id === +params.id || user.userType === 'admin') {
@@ -64,5 +64,22 @@ export default class UserController {
         message: `user ${params.id} has been deleted`,
       })
     }
+  }
+
+  async updateCredentials({ auth, params, request, response}: HttpContext) {
+    await request.validateUsing(userExistValidator)
+    await request.validateUsing(userCredentialValidator)
+    const user = await auth.authenticate()
+    if (user.id !== +params.id && user.userType !== 'admin') {
+      return response.status(403).json({
+        message: 'Forbidden access',
+      })
+    }
+    
+    user.merge(request.body())
+    user.save()
+    return response.ok({
+      message: `User ${params.id} credentials has been updated`
+    })
   }
 }

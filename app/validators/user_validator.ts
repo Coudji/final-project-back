@@ -33,3 +33,19 @@ export const userExistValidator = vine.compile(
     }),
   })
 )
+
+export const userCredentialValidator = vine.compile(
+  vine.object({
+    email: vine
+      .string()
+      .email()
+      .unique(async (query, field) => {
+        const user = await query.from('users').where('email', field).first()
+
+        return !user
+      }
+    )
+    .optional(),
+    password: vine.string().minLength(8).maxLength(32).optional()
+  }),
+)
