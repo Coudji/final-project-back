@@ -8,6 +8,12 @@ export const patchUserValidator = vine.compile(
     email: vine
       .string()
       .email()
+      /*
+      .unique(async (query, field) => {
+        const user = await query.from('users').where('email', field).first()
+        return !user
+      })
+      */
       .maxLength(254)
       .optional(),
     password: vine.string().minLength(8).maxLength(32).optional(),
