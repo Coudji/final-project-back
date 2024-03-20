@@ -1,6 +1,8 @@
 import Gallery from '#models/gallery'
-import {  fileExistValidator, galleryValidator } from '#validators/gallery_validator'
+import { fileExistValidator, galleryValidator, testVal } from '#validators/gallery_validator'
+import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
+import app from '@adonisjs/core/services/app'
 import db from '@adonisjs/lucid/services/db'
 
 export default class GalleriesController {
@@ -32,6 +34,14 @@ export default class GalleriesController {
             message: 'Your file(s) has been uploaded'
         })
         
+    }
+
+    async test({params, request}:HttpContext) {
+        const {file} = await request.validateUsing(testVal)
+        
+        await file.move(app.makePath(`public/gallery/${params.id}/`), {name: `${cuid()}.${file.extname}`})
+        
+        return request.file('file')
     }
 
     async updateFile({ params, request, response}: HttpContext) {

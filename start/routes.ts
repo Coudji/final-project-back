@@ -53,8 +53,7 @@ router
 
       router.group(() => {
         router.patch('announce/:id', [AnnounceController, 'adminCheckAnnounce'])
-        router.get('stats/user/total', [AdminController, 'userCount'])
-        router.get('stats/admincount', [AdminController, 'adminCount'])
+        router.get('stats', [AdminController, 'statsCounter'])
       })
       .prefix('admin')
       .use(middleware.auth())
@@ -62,6 +61,7 @@ router
     router.get('practices', [PracticesController, 'getAllPractices']).use(middleware.auth())
     router.get('profiles', [UserProfilesController, 'getAllUserProfile']).use(middleware.auth())
     router.get('announces', [AnnounceController, 'getAllAnnounces']).use(middleware.auth())
+    router.post('test/:id', [GalleriesController, 'test'])
     
   })
   .prefix('api')

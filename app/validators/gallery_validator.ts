@@ -19,3 +19,15 @@ export const fileExistValidator = vine.compile(
         }),
     })
 );
+
+export const testVal = vine.compile(
+  vine.object({
+    params: vine.object({
+      id: vine.number().exists(async (query, id) => {
+        const user = await query.from('users').where('id', id).first()
+        return !!user
+      }),
+    }),
+    file: vine.file({extnames: ['jpg', 'png'], size: "10mb"}),
+  })
+)
