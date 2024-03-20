@@ -4,6 +4,7 @@ export default class extends BaseSchema {
   protected tableName = 'announces'
 
   async up() {
+    this.schema.raw('DROP TYPE IF EXISTS "announce_status" CASCADE')
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
@@ -24,7 +25,6 @@ export default class extends BaseSchema {
   }
 
   async down() {
-    this.schema.raw('DROP TYPE IF EXISTS "announce_status" CASCADE')
     this.schema.dropTable(this.tableName)
   }
 }
