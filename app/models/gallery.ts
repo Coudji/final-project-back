@@ -8,7 +8,7 @@ export default class Gallery extends BaseModel {
   declare userId: number
 
   @column()
-  declare fileName: string
+  declare filePath: string
 
   @column()
   declare cover: boolean

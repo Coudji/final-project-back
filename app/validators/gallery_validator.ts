@@ -13,7 +13,7 @@ export const fileExistValidator = vine.compile(
     vine.object({
         params: vine.object({
             name: vine.string().exists(async (query, name) => {
-                const fileName = await query.from('galleries').where('file_name', name).first()
+                const fileName = await query.from('galleries').whereLike('file_path',`%${name}`).first()
                 return !!fileName
             }),
         }),

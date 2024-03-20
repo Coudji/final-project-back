@@ -6,27 +6,33 @@ export default class extends BaseSeeder {
     await Gallery.createMany([
       {
         userId: 1,
-        fileName: "Trouduc",
+        filePath: "public/gallery/1/beh.jpg",
+        cover: true
       },
       {
         userId: 2,
-        fileName: "JeSuisDansLeGameEnClaquette",
+        filePath: "public/gallery/2/beh.jpg",
+        cover: true
       },
       {
         userId: 3,
-        fileName: "photoDeBidulle",
+        filePath: "public/gallery/3/beh.jpg",
+        cover: true
       },
       {
         userId: 4,
-        fileName: "photo4",
+        filePath: "public/gallery/4/beh.jpg",
+        cover: true
       },
       {
         userId: 5,
-        fileName: "photo2",
+        filePath: "public/gallery/5/beh.jpg",
+        cover: true
       },
       {
         userId: 6,
-        fileName: "photoPhoto",
+        filePath: "public/gallery/6/beh.jpg",
+        cover: true
       },
     ])
   }

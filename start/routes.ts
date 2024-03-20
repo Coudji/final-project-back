@@ -43,25 +43,26 @@ router
         router.post(':id/announce', [AnnounceController, 'createAnnounce'])
         router.patch(':id/announce', [AnnounceController, 'updateAnnounce'])
         router.delete(':id/announce', [AnnounceController, 'deleteAnnounce'])
-        router.get(':id/gallery', [GalleriesController, 'getFiles'])
-        router.post(':id/gallery', [GalleriesController, 'addFileName'])
+        router.get(':id/gallery', [GalleriesController, 'getUsergallery'])
+        router.post(':id/gallery', [GalleriesController, 'uploadInUserGallery'])
         router.patch(':id/gallery/:name', [GalleriesController, 'updateFile'])
-        router.delete(':id/gallery/:name', [GalleriesController, 'removeFileName'])
+        router.delete(':id/gallery/:name', [GalleriesController, 'removeFile'])
       })
       .prefix('user')
-      .use(middleware.auth())
 
       router.group(() => {
         router.patch('announce/:id', [AnnounceController, 'adminCheckAnnounce'])
         router.get('stats', [AdminController, 'statsCounter'])
       })
       .prefix('admin')
-      .use(middleware.auth())
 
-    router.get('practices', [PracticesController, 'getAllPractices']).use(middleware.auth())
-    router.get('profiles', [UserProfilesController, 'getAllUserProfile']).use(middleware.auth())
-    router.get('announces', [AnnounceController, 'getAllAnnounces']).use(middleware.auth())
-    router.post('test/:id', [GalleriesController, 'test'])
+    router.get('practices', [PracticesController, 'getAllPractices'])
+    router.get('profiles', [UserProfilesController, 'getAllUserProfile'])
+    router.get('announces', [AnnounceController, 'getAllAnnounces'])
     
   })
-  .prefix('api')
+  .prefix('api').use(middleware.auth())
+
+router.group(()=>{
+  router.get('gallery/:id/:fileName', [GalleriesController, 'getFile'])
+}).prefix('uploads')
