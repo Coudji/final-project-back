@@ -33,3 +33,9 @@ export const updateAnnounceValidator = vine.compile(
     }).optional()
   })
 )
+
+export const adminCheckAnnounceValidator = vine.compile(
+  vine.object({
+    status: vine.enum(['PENDING', 'REFUSED', 'VALIDED'])
+  })
+)

@@ -1,5 +1,6 @@
 import User from '#models/user'
 import { loginValidator, registerValidator } from '#validators/auth_validator'
+import { isAbleToFuckValidator } from '#validators/user_validator'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class AuthController {
@@ -20,6 +21,7 @@ export default class AuthController {
   }
 
   async register({ request, response }: HttpContext) {
+    await request.validateUsing(isAbleToFuckValidator)
     const payload = await request.validateUsing(registerValidator)
     const user = await User.create(payload)
 

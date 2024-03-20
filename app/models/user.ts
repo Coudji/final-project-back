@@ -2,11 +2,12 @@ import { DateTime } from 'luxon'
 import { withAuthFinder } from '@adonisjs/auth'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
 import { DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
 import UserProfile from './user_profile.js'
-import type { HasOne } from '@adonisjs/lucid/types/relations'
+import type { HasOne , HasMany } from '@adonisjs/lucid/types/relations'
 import Announce from './announce.js'
+import Gallery from './gallery.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -43,6 +44,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @hasOne(() => Announce)
   declare announce: HasOne<typeof Announce>
+
+  @hasMany(() => Gallery)
+  declare gallery: HasMany<typeof Gallery>
 
   @column({ serializeAs: null })
   declare userType: string

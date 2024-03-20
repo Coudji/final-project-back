@@ -26,18 +26,17 @@ export default class AnnounceController {
     })
   }
 
-  async updateAnnounce({ params, request, response }: HttpContext) {
+  async updateAnnounce({auth, params, request, response }: HttpContext) {
     await request.validateUsing(updateAnnounceValidator)
-    const oldAnnounce = await Announce.findByOrFail('user_id', params.id)
-    const newAnnounce = await Announce.updateOrCreate({ status : 'PENDING'}, request.body())
+    const user = await auth.authenticate()
+    if(user.id !== params.id && user.userType !== 'admin') return response.status(403).json({message: "Forbidden access"})
 
-    
-    if(oldAnnounce.title !== newAnnounce.title || oldAnnounce.description !== newAnnounce.description) {
-     oldAnnounce.merge(newAnnounce)
-    }else{
-      oldAnnounce.merge(request.body())
-    }
-    await oldAnnounce.save()
+    const announce = await Announce.findByOrFail('user_id', params.id)
+    const req = request.body()
+
+    if (announce.title !== req.title) announce.status = 'PENDING'
+    announce.merge(req)
+    await announce.save()
     return response.ok({
       message: `Announce for user ${params.id} has been updated`
     })
@@ -52,5 +51,16 @@ export default class AnnounceController {
           message: `Announce for user ${params.id} has been deleted`,
         })
       }
+  }
+
+  async adminCheckAnnounce({ auth , params, request, response }: HttpContext) {
+    const user = await auth.authenticate()
+    if(user.userType !== 'admin') return response.status(403).json({message: "Forbidden access"})
+    const announce = await Announce.findByOrFail('user_id', params.id)
+    announce.status = request.body().status
+    await announce.save()
+    return response.ok({
+      message: `New announce status set as ${request.body().status}`
+    })
   }
 }

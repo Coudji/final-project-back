@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+import AdminController from '#controllers/admin_controller'
 const AuthController = () => import('#controllers/auth_controller')
 const UserController = () => import('#controllers/user_controller')
 const UserProfilesController = () => import('#controllers/user_profiles_controller')
@@ -48,6 +49,14 @@ router
         router.delete(':id/gallery/:name', [GalleriesController, 'removeFileName'])
       })
       .prefix('user')
+      .use(middleware.auth())
+
+      router.group(() => {
+        router.patch('announce/:id', [AnnounceController, 'adminCheckAnnounce'])
+        router.get('stats/user/total', [AdminController, 'userCount'])
+        router.get('stats/admincount', [AdminController, 'adminCount'])
+      })
+      .prefix('admin')
       .use(middleware.auth())
 
     router.get('practices', [PracticesController, 'getAllPractices']).use(middleware.auth())

@@ -31,6 +31,7 @@ export default class UserController {
       .where('id', params.id)
       .preload('userProfile')
       .preload('announce')
+      .preload('gallery')
     return response.ok({
       user,
     })
