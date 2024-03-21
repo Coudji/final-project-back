@@ -12,6 +12,8 @@ export default class AdminController {
         const transexuelCount = await db.query().from('user_profiles').count('*').where('genre','transexuel')
         const robotCount = await db.query().from('user_profiles').count('*').where('genre','robot')
         const transformersCount = await db.query().from('user_profiles').count('*').where('genre','transformers')
+        const announceCount = await db.query().from('announces').count('*')
+        const announceDayCount = await db.query().from('announces').count('*').whereRaw('DATE(created_at) = CURRENT_DATE')
         return response.ok({
             userCount: userCount.rows[0].total_users,
             adminCount: adminCount.rows[0].total_admins,
@@ -21,6 +23,8 @@ export default class AdminController {
             transexuelCount:transexuelCount[0].count,
             robotCount:robotCount[0].count,
             transformersCount:transformersCount[0].count,
+            announceCount:announceCount[0].count,
+            announceDayCount:announceDayCount[0].count,
         })
     }
 }
