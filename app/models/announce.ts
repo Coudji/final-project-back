@@ -1,7 +1,9 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
+import AnnounceFilter from './filters/announce_filter.js'
 
 export default class Announce extends BaseModel {
+  static $filter = () => AnnounceFilter
   @column({ isPrimary: true })
   declare id: number
 

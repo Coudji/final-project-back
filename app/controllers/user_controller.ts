@@ -1,3 +1,4 @@
+import AnnounceFilter from '#models/filters/announce_filter'
 import UserFilter from '#models/filters/user_filter'
 import User from '#models/user'
 import { patchUserValidator, userCredentialValidator, userExistValidator } from '#validators/user_validator'
@@ -12,7 +13,8 @@ export default class UserController {
   }
 
   async filteredUser({request}:HttpContext) {
-    return User.filter(request.qs(),UserFilter).exec()
+    return User.filter(request.qs(),UserFilter)
+    .preload('announce').filter(request.qs(),AnnounceFilter).exec()
   }
 
   async getAllFullUsers({ response }: HttpContext) {

@@ -14,4 +14,7 @@ export default class UserFilter extends BaseModelFilter {
     this.$query.whereRaw(`address->>'city' = '${value}'`)
   }
 
+  private(value: string): void {
+    this.$query.where('private', value)
+  }
 }
