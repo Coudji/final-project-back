@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.integer('user_id')
-      table.string('file_path')
+      table.string('url')
       table.boolean('cover').defaultTo(false)
     })
   }
