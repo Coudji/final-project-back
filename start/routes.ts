@@ -66,3 +66,5 @@ router
 router.group(()=>{
   router.get('gallery/:id/:fileName', [GalleriesController, 'getFile'])
 }).prefix('uploads')
+
+router.get('test',[UserController, 'filteredUser'])

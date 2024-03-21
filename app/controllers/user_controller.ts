@@ -1,3 +1,4 @@
+import UserFilter from '#models/filters/user_filter'
 import User from '#models/user'
 import { patchUserValidator, userCredentialValidator, userExistValidator } from '#validators/user_validator'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -8,6 +9,10 @@ export default class UserController {
     return response.ok({
       users,
     })
+  }
+
+  async filteredUser({request}:HttpContext) {
+    return User.filter(request.qs(),UserFilter).exec()
   }
 
   async getAllFullUsers({ response }: HttpContext) {

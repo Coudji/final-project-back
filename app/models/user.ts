@@ -8,13 +8,16 @@ import UserProfile from './user_profile.js'
 import type { HasOne , HasMany } from '@adonisjs/lucid/types/relations'
 import Announce from './announce.js'
 import Gallery from './gallery.js'
+import { Filterable } from 'adonis-lucid-filter'
+import UserFilter from './filters/user_filter.js'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
   passwordColumnName: 'password',
 })
 
-export default class User extends compose(BaseModel, AuthFinder) {
+export default class User extends compose(BaseModel, AuthFinder, Filterable) {
+  static $filter = () => UserFilter
   @column({ isPrimary: true })
   declare id: number
 
