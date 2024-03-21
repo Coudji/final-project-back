@@ -178,6 +178,22 @@ export default class extends BaseSeeder {
           '60min': 120,
         },
       },
+      {
+        userId: 21,
+        title: 'Viens jouer avec ma grosse cylindrée',
+        description:
+          "Avec moi tu vas apprendre ce que c'est de rester collé au siège !\n",
+        infidelityCard: false,
+        private: true,
+        escort: true,
+        practices: [1, 2, 3, 4, 5],
+        pricing: {
+          '15min': 50,
+          '30min': 80,
+          '45min': 110,
+          '60min': 120,
+        },
+      }
     ])
   }
 }

@@ -103,7 +103,7 @@ export default class extends BaseSeeder {
           zip_code: 7600,
         },
       },
-      {
+      {//8
         firstname: 'Jean',
         lastname: 'Grey',
         niss: '48.02.15-112.29',
@@ -219,7 +219,7 @@ export default class extends BaseSeeder {
         firstname: 'Thor',
         lastname: 'Odinson',
         niss: '28.02.12-112.29',
-        nickname: 'Le ctrl de Foutre',
+        nickname: 'Le dieu du Foutre',
         email: 'thoro@test.com',
         password: 'mjollnir',
         address: {
@@ -283,6 +283,20 @@ export default class extends BaseSeeder {
           number: '412',
           city: 'Anvers',
           zip_code: 2000,
+        },
+      },
+      {
+        firstname: 'Bumble',
+        lastname: 'Bee',
+        niss: '88.04.14-112.29',
+        nickname: 'Bumblezboub',
+        email: 'bigbee@test.com',
+        password: 'autobotsforever',
+        address: {
+          street: 'rue du test',
+          number: '412',
+          city: 'Ostende',
+          zip_code: 8400,
         },
       },
     ])

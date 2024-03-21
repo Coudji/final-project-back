@@ -159,7 +159,7 @@ export default class extends BaseSeeder {
         orientation: 'hétéro',
         size: 200,
         weight: 89,
-        penis_size: 22,
+        penis_size: 60,
         hairColor: 'auburn',
         eyeColor: 'brun',
       },
@@ -203,6 +203,16 @@ export default class extends BaseSeeder {
         hairColor: 'auburn',
         eyeColor: 'brun',
       },
+      {
+        userId: 21,
+        genre: 'transformers',
+        orientation: 'plug & play',
+        size: 350,
+        weight: 2569,
+        penis_size: 80,
+        hairColor: 'hair?',
+        eyeColor: 'bleu',
+      }
     ])
   }
 }
