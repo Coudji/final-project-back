@@ -12,10 +12,9 @@ export default class UserController {
     })
   }
 
-  async filteredUser({request}:HttpContext) {
-    return User.filter(request.qs(),UserFilter)
-    .preload('announce').filter(request.qs(),AnnounceFilter).exec()
-  }
+  /* async filteredUser({request}:HttpContext) {
+    return User.filter(request.qs(),UserFilter).join('announce',).exec()
+  } */
 
   async getAllFullUsers({ response }: HttpContext) {
     const users = await User.query().preload('announce').preload('userProfile')
