@@ -35,7 +35,7 @@ export default class GalleriesController {
         const user = await auth.authenticate()
         type galleryPayload={
             cover?:boolean
-            filePath?:string
+            url?:string
             userId?:number
         }
         let payload:galleryPayload ={}
@@ -52,7 +52,7 @@ export default class GalleriesController {
             payload.cover = true
         }
         payload.userId = user.id
-        payload.filePath = `http://localhost:3333/uploads/gallery/${params.id}/${file.fileName}`
+        payload.url = `http://localhost:3333/uploads/gallery/${params.id}/${file.fileName}`
         await Gallery.create(payload)
         
         return request.file('file')
