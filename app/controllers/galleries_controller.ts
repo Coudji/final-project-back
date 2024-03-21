@@ -58,11 +58,12 @@ export default class GalleriesController {
         return request.file('file')
     }
 
-    async updateFile({ params, request, response}: HttpContext) {
+    async updateFile({ auth, params, request, response}: HttpContext) {
         await request.validateUsing(fileExistValidator)
+        const user = await auth.authenticate()
+        if (user.id !== +params.id && user.userType !== 'admin') return response.status(403).json({message: 'Forbidden access'})
         const file = await Gallery.query().from('galleries').whereLike('file_path',`%${params.name}`).firstOrFail()
         const oldCover = await Gallery.query().where('userId', params.id).andWhere('cover', true).firstOrFail()
-        
         oldCover.cover === true ? oldCover.cover = !oldCover.cover : oldCover.cover
         await oldCover.save()
 
@@ -75,17 +76,15 @@ export default class GalleriesController {
 
     async removeFile({ auth, params, response }: HttpContext) {
         const user = await auth.authenticate()
-        if (user.id === +params.id || user.userType === 'admin') {
-            const row = await Gallery.query().from('galleries').whereLike('file_path',`%${params.name}`).firstOrFail()
-            row.delete()
-            const file = app.makePath(`public\\gallery\\${params.id}\\${params.name}`)
-            
-            fs.unlinkSync(file)
+        if (user.id !== +params.id && user.userType !== 'admin') return response.status(403).json({message: 'Forbidden access'})
+        const row = await Gallery.query().from('galleries').whereLike('file_path',`%${params.name}`).firstOrFail()
+        row.delete()
+        const file = app.makePath(`public\\gallery\\${params.id}\\${params.name}`)
+        
+        fs.unlinkSync(file)
 
-            return response.ok({
-                message: 'Your file(s) has been deleted'
-            })
-        }
-
+        return response.ok({
+            message: 'Your file(s) has been deleted'
+        })
     }
 }

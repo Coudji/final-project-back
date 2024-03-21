@@ -1,5 +1,5 @@
-import AnnounceFilter from '#models/filters/announce_filter'
-import UserFilter from '#models/filters/user_filter'
+/* import AnnounceFilter from '#models/filters/announce_filter'
+import UserFilter from '#models/filters/user_filter' */
 import User from '#models/user'
 import { patchUserValidator, userCredentialValidator, userExistValidator } from '#validators/user_validator'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -12,12 +12,12 @@ export default class UserController {
     })
   }
 
-  /* async filteredUser({request}:HttpContext) {
-    return User.filter(request.qs(),UserFilter).join('announce',).exec()
+/*   async filteredUser({request}:HttpContext) {
+    return User.filter(request.qs(),UserFilter).exec()
   } */
 
   async getAllFullUsers({ response }: HttpContext) {
-    const users = await User.query().preload('announce').preload('userProfile')
+    const users = await User.query().preload('announce').preload('userProfile').preload('gallery')
     return response.ok({
       users,
     })
@@ -43,14 +43,15 @@ export default class UserController {
     })
   }
 
-  async updateOneUser({ params, request, response }: HttpContext) {
+  async updateOneUser({ auth, params, request, response }: HttpContext) {
     await request.validateUsing(userExistValidator)
     await request.validateUsing(patchUserValidator)
-
-    const user = await User.findOrFail(params.id)
+    const user = await auth.authenticate()
+    if(user.id !== +params.id && user.userType !== 'admin') return response.status(403).json({message: 'Forbidden access'})
+    const userToUpdate = await User.findOrFail(params.id)
     const reqBody = request.body()
-    user.merge(reqBody)
-    await user.save()
+    userToUpdate.merge(reqBody)
+    await userToUpdate.save()
     return response.ok({
       message: `user ${params.id} has been updated`,
     })
@@ -65,18 +66,17 @@ export default class UserController {
         message: 'Forbidden access',
       })
     }
-    if (user.id === +params.id || user.userType === 'admin') {
-      await user.delete()
+    await user.delete()
       return response.ok({
         message: `user ${params.id} has been deleted`,
       })
-    }
   }
 
   async updateCredentials({ auth, params, request, response}: HttpContext) {
     await request.validateUsing(userExistValidator)
     await request.validateUsing(userCredentialValidator)
     const user = await auth.authenticate()
+    
     if (user.id !== +params.id && user.userType !== 'admin') {
       return response.status(403).json({
         message: 'Forbidden access',

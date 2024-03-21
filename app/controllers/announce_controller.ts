@@ -16,8 +16,10 @@ export default class AnnounceController {
     })
   }
 
-  async createAnnounce({ params, request, response }: HttpContext) {
+  async createAnnounce({ auth, params, request, response }: HttpContext) {
     await request.validateUsing(createAnnounceValidator)
+    const user = await auth.authenticate()
+    if(user.id !== params.id) return response.status(403).json({message: "Forbidden access"})
     request.body()['userId'] = params.id
     const announce = await Announce.create(request.body())
     announce.save()

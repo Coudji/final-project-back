@@ -16,9 +16,11 @@ export default class UserProfilesController {
     return response.ok(userProfile)
   }
 
-  async upsertUserProfile({ params, request, response }: HttpContext) {
+  async upsertUserProfile({auth, params, request, response }: HttpContext) {
     await request.validateUsing(userExistValidator)
     await request.validateUsing(userProfileValidator)
+    const user = await auth.authenticate()
+    if (user.id !== +params.id && user.userType !== 'admin') return response.status(403).json({message: 'Forbidden access'})
     const userProfile = await UserProfile.updateOrCreate({ userId: params.id }, request.body())
     userProfile.save()
     return response.ok({
@@ -32,17 +34,15 @@ export default class UserProfilesController {
     const user = await auth.authenticate()
 
     if (user.id !== +params.id && user.userType !== 'admin') {
-      return response.status(401).json({
-        message: 'Unauthorized access',
+      return response.status(403).json({
+        message: 'Forbidden access',
       })
     }
 
-    if (user.id === +params.id || user.userType === 'admin') {
-      const userProfile = await UserProfile.findByOrFail('user_id', params.id)
-      await userProfile.delete()
-      return response.ok({
-        message: `Profile of user ${params.id} has been deleted`,
-      })
-    }
+    const userProfile = await UserProfile.findByOrFail('user_id', params.id)
+    await userProfile.delete()
+    return response.ok({
+      message: `Profile of user ${params.id} has been deleted`,
+    })
   }
 }
