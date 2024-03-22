@@ -66,28 +66,33 @@ export default class extends BaseSeeder {
       },
       {
         userId: 9,
-        url: "http://localhost:3333/uploads/gallery/9/5d56e2d93be35be9240fe6a5833ed64d.jpg",
+        url: "http://localhost:3333/uploads/gallery/9/2f3389419fd94f1bcb67cc27634566d8.jpg",
         cover: true
       },
       {
         userId: 10,
-        url: "http://localhost:3333/uploads/gallery/10/f34083345266ec8dd79e46fcad85983d.png",
+        url: "http://localhost:3333/uploads/gallery/10/5d56e2d93be35be9240fe6a5833ed64d.jpg",
         cover: true
-      },
-      {
-        userId: 10,
-        url: "http://localhost:3333/uploads/gallery/10/2f86b2bd9e0fa6cb6e8a0d93d03420d2.png",
-        cover: false
       },
       {
         userId: 11,
-        url: "http://localhost:3333/uploads/gallery/11/5316_backdrop_scale_1280xauto.jpg",
+        url: "http://localhost:3333/uploads/gallery/11/2f86b2bd9e0fa6cb6e8a0d93d03420d2.png",
+        cover: true
+      },
+      {
+        userId: 11,
+        url: "http://localhost:3333/uploads/gallery/11/f34083345266ec8dd79e46fcad85983d.png",
+        cover: false
+      },
+      {
+        userId: 12,
+        url: "http://localhost:3333/uploads/gallery/12/5316_backdrop_scale_1280xauto.jpg",
         cover: true
       },
       {
         userId: 12,
-        url: "http://localhost:3333/uploads/gallery/12/20ab0ea03bbd63267b946fbd8d5fac0a.jpeg",
-        cover: true
+        url: "http://localhost:3333/uploads/gallery/12/Sans_titre.jpg",
+        cover: false
       },
       {
         userId: 21,
