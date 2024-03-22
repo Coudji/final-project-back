@@ -18,6 +18,7 @@ export default class extends BaseSeeder {
           '45min': 110,
           '60min': 120,
         },
+        status:'VALIDED'
       },
       {
         userId: 2,
@@ -33,6 +34,7 @@ export default class extends BaseSeeder {
           '45min': 110,
           '60min': 120,
         },
+        status:'VALIDED'
       },
       {
         userId: 3,
@@ -49,6 +51,7 @@ export default class extends BaseSeeder {
           '45min': 110,
           '60min': 120,
         },
+        status:'VALIDED'
       },
       {
         userId: 4,
@@ -65,6 +68,7 @@ export default class extends BaseSeeder {
           '45min': 110,
           '60min': 120,
         },
+        status:'VALIDED'
       },
       {
         userId: 5,
@@ -81,6 +85,7 @@ export default class extends BaseSeeder {
           '45min': 110,
           '60min': 120,
         },
+        status:'VALIDED'
       },
       {
         userId: 6,
@@ -113,6 +118,7 @@ export default class extends BaseSeeder {
           '45min': 110,
           '60min': 120,
         },
+        status:'VALIDED'
       },
       {
         userId: 10,
@@ -129,6 +135,7 @@ export default class extends BaseSeeder {
           '45min': 110,
           '60min': 120,
         },
+        status:'VALIDED'
       },
       {
         userId: 11,
@@ -145,6 +152,7 @@ export default class extends BaseSeeder {
           '45min': 110,
           '60min': 120,
         },
+        status:'VALIDED'
       },
       {
         userId: 12,
@@ -161,6 +169,7 @@ export default class extends BaseSeeder {
           '45min': 110,
           '60min': 120,
         },
+        status:'VALIDED'
       },
       {
         userId: 15,

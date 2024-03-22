@@ -99,6 +99,51 @@ export default class extends BaseSeeder {
         url: "http://localhost:3333/uploads/gallery/13/20ab0ea03bbd63267b946fbd8d5fac0a.jpeg",
         cover: true
       },
+      {
+        userId: 13,
+        url: "http://localhost:3333/uploads/gallery/13/b24a2e1b25a6da393cb1fbf45347983a.jpeg",
+        cover: false
+      },
+      {
+        userId: 13,
+        url: "http://localhost:3333/uploads/gallery/13/7bbfc93b934cbd09bc455b60a33a5753.jpeg",
+        cover: false
+      },
+      {
+        userId: 13,
+        url: "http://localhost:3333/uploads/gallery/13/6bb928ccdd5542822fc48c4957a9431b.jpeg",
+        cover: false
+      },
+      {
+        userId: 14,
+        url: "http://localhost:3333/uploads/gallery/14/53d8648e3f7cce36724832327c85f303.jpeg",
+        cover: true
+      },
+      {
+        userId: 15,
+        url: "http://localhost:3333/uploads/gallery/15/sample_a5ef4c635d74550a41f8a57269f3a84b.jpg",
+        cover: true
+      },
+      {
+        userId: 16,
+        url: "http://localhost:3333/uploads/gallery/16/sample_b01f4a117e220672b0d3c8a162746d28.jpg",
+        cover: true
+      },
+      {
+        userId: 16,
+        url: "http://localhost:3333/uploads/gallery/16/sample_0fb6c6ef8ef1ee01b2551f1e9cf87ff9.jpg",
+        cover: false
+      },
+      {
+        userId: 19,
+        url: "http://localhost:3333/uploads/gallery/19/sample_6c4b7c65c76ee479d0efe47b9ddec0e1.jpg",
+        cover: true
+      },
+      {
+        userId: 19,
+        url: "http://localhost:3333/uploads/gallery/19/sample_e168529b399415487746a8ac3611733e.jpg",
+        cover: false
+      },
     ])
   }
 }
